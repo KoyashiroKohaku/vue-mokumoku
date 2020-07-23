@@ -1,8 +1,8 @@
 <template>
   <div>
     <form>
-      <button type="button" v-on:click="addTodo">ADD TASK</button>
-      <button type="button" v-on:click="removeTodo">
+      <button type="button" @click="addTodo">ADD TASK</button>
+      <button type="button" @click="removeTodo">
         DELETE FINISHED TASKS
       </button>
       <p>input: <input type="text" v-model="newTodo" /></p>
