@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ msg }}
     <form>
       <button type="button" v-on:click="addTodo">ADD TASK</button>
       <button>DELETE FINISHED TASKS</button>
