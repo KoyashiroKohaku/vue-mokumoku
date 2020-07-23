@@ -8,17 +8,8 @@
       <p>task:</p>
     </form>
     <div class="task-list">
-      <label class="task-list__item">
-        <input type="checkbox" /><button>EDIT</button>vue-router
-      </label>
-      <label class="task-list__item">
-        <input type="checkbox" /><button>EDIT</button>vuex
-      </label>
-      <label class="task-list__item">
-        <input type="checkbox" /><button>EDIT</button>vue-loader
-      </label>
-      <label class="task-list__item--checked">
-        <input type="checkbox" /><button>EDIT</button>awesome-vue
+      <label class="task-list__item" v-for="todo in todos" :key="todo.id">
+        <input type="checkbox" /><button>EDIT</button>{{ todo.text }}
       </label>
     </div>
   </div>
@@ -30,6 +21,32 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  data() {
+    return {
+      todos: [
+        {
+          id: 0,
+          text: "vue-router",
+          done: false
+        },
+        {
+          id: 1,
+          text: "vuex",
+          done: false
+        },
+        {
+          id: 2,
+          text: "vue-loader",
+          done: false
+        },
+        {
+          id: 3,
+          text: "awesome-vue",
+          done: true
+        }
+      ]
+    };
+  }
 }
 </script>
 
