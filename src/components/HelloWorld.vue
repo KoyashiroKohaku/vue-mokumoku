@@ -11,8 +11,13 @@
     <div class="task-list">
       <label class="task-list__item" v-for="todo in todos" :key="todo.id">
         <input type="checkbox" v-model="todo.done" />
-        <button>EDIT</button>
-        {{ todo.text }}
+        <input type="checkbox" v-model="todo.editing" />
+        <input
+          v-if="todo.editing"
+          v-model="todo.text"
+          @keyup.enter="todo.editing = !todo.editing"
+        />
+        <span v-else>{{ todo.text }}</span>
       </label>
     </div>
   </div>
@@ -28,22 +33,26 @@ export default class HelloWorld extends Vue {
     {
       id: 0,
       text: "vue-router",
-      done: false
+      done: false,
+      editing: false
     },
     {
       id: 1,
       text: "vuex",
-      done: false
+      done: false,
+      editing: false
     },
     {
       id: 2,
       text: "vue-loader",
-      done: false
+      done: false,
+      editing: false
     },
     {
       id: 3,
       text: "awesome-vue",
-      done: true
+      done: true,
+      editing: false
     }
   ];
   newTodo = "";
@@ -55,7 +64,8 @@ export default class HelloWorld extends Vue {
     this.todos.push({
       id: this.getMaxId() + 1,
       text: text,
-      done: false
+      done: false,
+      editing: false
     });
     this.newTodo = "";
   }
