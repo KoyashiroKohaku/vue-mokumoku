@@ -4,6 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <h1>Todo Management.</h1>
+    <hr />
     <router-view />
   </div>
 </template>
