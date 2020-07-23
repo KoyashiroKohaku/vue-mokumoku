@@ -2,7 +2,7 @@
   <div>
     {{ msg }}
     <form>
-      <button>ADD TASK</button>
+      <button type="button" v-on:click="addTodo">ADD TASK</button>
       <button>DELETE FINISHED TASKS</button>
       <p>input: <input type="text" v-model="newTodo" /></p>
       <p>task: {{ newTodo }}</p>
@@ -21,32 +21,43 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
-  data() {
-    return {
-      todos: [
-        {
-          id: 0,
-          text: "vue-router",
-          done: false
-        },
-        {
-          id: 1,
-          text: "vuex",
-          done: false
-        },
-        {
-          id: 2,
-          text: "vue-loader",
-          done: false
-        },
-        {
-          id: 3,
-          text: "awesome-vue",
-          done: true
-        }
-      ],
-      newTodo: ""
-    };
+  todos = [
+    {
+      id: 0,
+      text: "vue-router",
+      done: false
+    },
+    {
+      id: 1,
+      text: "vuex",
+      done: false
+    },
+    {
+      id: 2,
+      text: "vue-loader",
+      done: false
+    },
+    {
+      id: 3,
+      text: "awesome-vue",
+      done: true
+    }
+  ];
+  newTodo = "";
+  addTodo(): void {
+    const text = this.newTodo && this.newTodo.trim();
+    if (!text) {
+      return;
+    }
+    this.todos.push({
+      id: this.getMaxId() + 1,
+      text: text,
+      done: false
+    });
+    this.newTodo = "";
+  }
+  getMaxId(): number {
+    return this.todos.map(t => t.id).reduce((a, b) => Math.max(a, b));
   }
 }
 </script>
