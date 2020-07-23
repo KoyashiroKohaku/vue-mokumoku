@@ -9,7 +9,12 @@
       <p>task: {{ newTodo }}</p>
     </form>
     <div class="task-list">
-      <label class="task-list__item" v-for="todo in todos" :key="todo.id">
+      <label
+        class="task-list__item"
+        v-for="todo in todos"
+        :key="todo.id"
+        v-bind:class="{ 'task-list__item--checked': todo.done }"
+      >
         <input type="checkbox" v-model="todo.done" />
         <input type="checkbox" v-model="todo.editing" />
         <input
