@@ -1,5 +1,9 @@
 # vue-mokumoku
 
+## gh-pages
+
+<https://koyashirokohaku.github.io/vue-mokumoku/>
+
 ## Project setup
 ```
 yarn install
